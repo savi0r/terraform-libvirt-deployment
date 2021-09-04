@@ -108,7 +108,7 @@ data "template_file" "network_config" {
 resource "libvirt_volume" "os_image" {
   name   = "base_os_image"
   pool   = libvirt_pool.openstack_staging_cluster.name
-  source = "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
+  source = var.iso_address
   format = "qcow2"
 }
 
@@ -158,7 +158,7 @@ resource "libvirt_domain" "domain-ubuntu" {
   }
 
   xml {
-    xslt = file("${path.module}/nested_virtualization.xslt")
+    xslt = file("${path.module}/domain_settings.xslt")
   }
 
   cloudinit = libvirt_cloudinit_disk.commoninit[each.key].id

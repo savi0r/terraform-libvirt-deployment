@@ -7,12 +7,18 @@
       <xsl:apply-templates select="node()|@*"/>
     </xsl:copy>
   </xsl:template>
-
+  <xsl:template match="/domain/devices/interface[@type='network']/model/@type">
+    <xsl:attribute name="type">
+      <xsl:value-of select="'e1000'"/>
+    </xsl:attribute>
+  </xsl:template>
   <xsl:template match="cpu">
     <xsl:copy>
      <xsl:attribute name="mode">host-model</xsl:attribute>
       <xsl:apply-templates select="@*|node()"/>
     </xsl:copy>
    </xsl:template>
+ 
 
 </xsl:stylesheet>
+

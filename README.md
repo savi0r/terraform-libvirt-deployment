@@ -17,6 +17,7 @@ module "deployment" {
   networks = var.networks
   provision_ipaddr = var.provision_ipaddr
   os_mgmt_ipaddr = var.os_mgmt_ipaddr
+  iso_address = var.iso_address
 }
 ```
 
@@ -183,6 +184,12 @@ variable "os_mgmt_ipaddr" {
   type        = string
   default     = "172.31.3.254"
 }
+
+variable "iso_address" {
+  description = "ip addr of deployment node on provision network"
+  type        = string
+  default     = "https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.img"
+}
 ```
 
 Afterwards , you have to provide your public key in a file named `id_rsa.pub` in the same directory where main.tf and vars.tf reside.
@@ -193,3 +200,4 @@ Your main directory would look like this:
 ├── variables.tf
 ├── id_rsa.pub
 ```
+
